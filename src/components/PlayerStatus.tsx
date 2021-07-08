@@ -2,9 +2,11 @@
 import React from 'react';
 import { css, jsx } from '@emotion/react';
 
-interface PlayerStatusProps {}
+interface PlayerStatusProps {
+  health: string[];
+}
 
-export const PlayerStatus: React.FC<PlayerStatusProps> = ({}) => {
+export const PlayerStatus: React.FC<PlayerStatusProps> = ({ health }) => {
   return (
     <div
       css={css`
@@ -16,7 +18,7 @@ export const PlayerStatus: React.FC<PlayerStatusProps> = ({}) => {
         }
       `}
     >
-      <div>💗💗💗💗💗💗💗💗</div>
+      <div>{health.length ? health : '💀'}</div>
       <div>🍗🍗🍗🍗🍗🍗🍗🍗</div>
     </div>
   );

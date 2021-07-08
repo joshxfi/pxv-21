@@ -13,9 +13,20 @@ export const Game: React.FC<GameProps> = ({}) => {
   const [choice, setChoice] = useState<string>('');
   const [isDead, setIsDead] = useState<boolean>(false);
   const [story, setStory] = useState<string[]>([mainStory.a]);
+  const [bag, setBag] = useState<string[]>(['[🎒]']);
+  const [health, setHealth] = useState<string[]>([
+    '🤍',
+    '🤍',
+    '🤍',
+    '🤍',
+    '🤍',
+    '🤍',
+    '🤍',
+    '🤍',
+  ]);
 
   const addStory = (s: string) => {
-    const newStory = s;
+    const newStory = s && `=> ${s}`;
 
     setStory([...story, newStory]);
   };
@@ -40,12 +51,16 @@ export const Game: React.FC<GameProps> = ({}) => {
     <div
       css={css`
         display: grid;
-        width: 70%;
+        width: 60%;
         margin: 0 auto;
         grid-template-columns: 1fr;
 
         div:not(.scrollDown) {
           border: 1px solid #333;
+        }
+
+        @media screen and (max-width: 768px) {
+          width: 85%;
         }
       `}
     >
@@ -55,8 +70,8 @@ export const Game: React.FC<GameProps> = ({}) => {
           grid-template-columns: 1fr 1fr;
         `}
       >
-        <Inventory />
-        <PlayerStatus />
+        <Inventory bag={bag} />
+        <PlayerStatus health={health} />
       </div>
       <Story story={story} />
       <Choices
@@ -67,6 +82,8 @@ export const Game: React.FC<GameProps> = ({}) => {
         addStory={addStory}
         restart={restart}
         isDead={isDead}
+        bag={bag}
+        setBag={setBag}
       />
     </div>
   );

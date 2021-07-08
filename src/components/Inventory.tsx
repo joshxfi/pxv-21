@@ -2,12 +2,21 @@
 import React from 'react';
 import { css, jsx } from '@emotion/react';
 
-interface InventoryProps {}
+interface InventoryProps {
+  bag: string[];
+}
 
-export const Inventory: React.FC<InventoryProps> = ({}) => {
+export const Inventory: React.FC<InventoryProps> = ({ bag }) => {
   return (
-    <div>
-      <p>[ inventory ]</p>
+    <div
+      css={css`
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      `}
+    >
+      {bag.map((item) => (
+        <p>{item}</p>
+      ))}
     </div>
   );
 };
