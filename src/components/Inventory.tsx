@@ -14,8 +14,8 @@ export const Inventory: React.FC<InventoryProps> = ({ bag }) => {
         grid-template-columns: repeat(4, 1fr);
       `}
     >
-      {bag.map((item) => (
-        <p>{item}</p>
+      {bag.map((item, index) => (
+        <p key={index}>{item}</p>
       ))}
     </div>
   );

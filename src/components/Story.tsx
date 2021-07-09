@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { css, jsx } from '@emotion/react';
 
 interface StoryProps {
-  story: string[];
+  story: JSX.Element;
 }
 
 export const Story: React.FC<StoryProps> = ({ story }) => {
@@ -26,10 +26,7 @@ export const Story: React.FC<StoryProps> = ({ story }) => {
         overflow-x: hidden;
       `}
     >
-      {story.map((st) => (
-        <p>{st}</p>
-      ))}
-
+      {story}
       <div className="scrollDown" ref={msgEndRef}></div>
     </div>
   );

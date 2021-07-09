@@ -5,8 +5,8 @@ import { css, jsx } from '@emotion/react';
 import { mainStory } from '../script';
 
 interface ChoicesProps {
-  story: string[];
-  setStory: React.Dispatch<React.SetStateAction<string[]>>;
+  story: JSX.Element;
+  setStory: React.Dispatch<React.SetStateAction<JSX.Element>>;
   choice: string;
   setChoice: React.Dispatch<React.SetStateAction<string>>;
   addStory: (s: string) => void;
@@ -46,7 +46,7 @@ export const Choices: React.FC<ChoicesProps> = ({
       const yourDmg = 26;
       const currentEnemyHP = enemyHP - yourDmg;
 
-      return `[Enemy HP: ${enemyHP}/74], [Your DMG: ${yourDmg}], [Enemy HP Left: ${currentEnemyHP}/74]`;
+      return `[Enemy HP: ${enemyHP}/74]\n [Your DMG: ${yourDmg}]\n [Enemy HP Left: ${currentEnemyHP}/74]`;
     }
   };
 
