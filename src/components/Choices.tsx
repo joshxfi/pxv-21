@@ -41,12 +41,18 @@ export const Choices: React.FC<ChoicesProps> = ({
       return mainStory.c1;
     } else if (choice === 'c2') {
       return mainStory.c2;
-    } else if (choice === 'd1') {
+    } else if (choice === 'd2a') {
       let enemyHP = 74;
       const yourDmg = 26;
       const currentEnemyHP = enemyHP - yourDmg;
 
       return `[Enemy HP: ${enemyHP}/74]\n [Your DMG: ${yourDmg}]\n [Enemy HP Left: ${currentEnemyHP}/74]`;
+    } else if (choice === 'd2b') {
+      return mainStory.d2b;
+    } else if (choice === 'd2b1') {
+      return;
+    } else if (choice === 'd2b2') {
+      return mainStory.d2b2;
     }
   };
 
@@ -98,10 +104,24 @@ export const Choices: React.FC<ChoicesProps> = ({
         </>
       )}
 
+      {choice === 'c1' && (
+        <>
+          {choices('d1a', 'reinforce door')}
+          {choices('d1b', 'do nothing')}
+        </>
+      )}
+
       {choice === 'c2' && (
         <>
-          {choices('d1', 'attack')}
-          {choices('d2', 'run away')}
+          {choices('d2a', 'attack')}
+          {choices('d2b', 'run away')}
+        </>
+      )}
+
+      {choice === 'd2b' && (
+        <>
+          {choices('d2b1', 'find a weapon')}
+          {choices('d2b2', 'stay silent')}
         </>
       )}
 

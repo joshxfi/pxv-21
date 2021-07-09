@@ -36,6 +36,7 @@ export const Game: React.FC<GameProps> = ({}) => {
           <p>{newStory}</p>
         ) : (
           <p>
+            <hr />
             {newStory.split('\n').map((str, index) => (
               <p key={index}>
                 {!str.includes('=>') && '=>'}
@@ -56,7 +57,7 @@ export const Game: React.FC<GameProps> = ({}) => {
   };
 
   const death = () => {
-    const possibleDeath = ['a1', 'b1'];
+    const possibleDeath = ['a1', 'b1', 'd2b2'];
     possibleDeath.forEach((death) => {
       choice === death && setIsDead(true);
     });
