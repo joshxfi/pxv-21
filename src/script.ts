@@ -9,5 +9,13 @@ export const mainStory: any = {
 
   // next choice
   c1: 'Weapon acquired, kitchen knife [🔪]',
-  c2: 'You dragged your cabinet towards your door. It made a loud screeching noise as you were dragging it. As you were about to get near your door, someone forced it open and came charging at you.',
+  c2: 'You dragged your cabinet towards your door. It made a loud screeching noise as you were dragging it. As you were about to get near your door, someone forced it open with a crowbar and came charging at you.',
+
+  // next choice when c1 [ attack ]
+  d1a: '',
+  d2a: '',
+
+  // next choice when c1 [ attack ]
+  d1b: '',
+  d2b: '',
 };

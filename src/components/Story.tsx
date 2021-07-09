@@ -29,6 +29,7 @@ export const Story: React.FC<StoryProps> = ({ story }) => {
       {story.map((st) => (
         <p>{st}</p>
       ))}
+
       <div className="scrollDown" ref={msgEndRef}></div>
     </div>
   );

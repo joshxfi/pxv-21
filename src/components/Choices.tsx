@@ -41,6 +41,12 @@ export const Choices: React.FC<ChoicesProps> = ({
       return mainStory.c1;
     } else if (choice === 'c2') {
       return mainStory.c2;
+    } else if (choice === 'd1') {
+      let enemyHP = 74;
+      const yourDmg = 26;
+      const currentEnemyHP = enemyHP - yourDmg;
+
+      return `[Enemy HP: ${enemyHP}/74], [Your DMG: ${yourDmg}], [Enemy HP Left: ${currentEnemyHP}/74]`;
     }
   };
 
