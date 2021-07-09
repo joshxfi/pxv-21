@@ -1,4 +1,5 @@
 /** @jsx jsx */
+/** @jsxFrag */
 import React, { useState, useEffect } from 'react';
 import { css, jsx } from '@emotion/react';
 import { Story } from './Story';
@@ -12,7 +13,7 @@ interface GameProps {}
 export const Game: React.FC<GameProps> = ({}) => {
   const [choice, setChoice] = useState<string>('');
   const [isDead, setIsDead] = useState<boolean>(false);
-  const [story, setStory] = useState<string[]>([mainStory.a]);
+  const [story, setStory] = useState<JSX.Element>(<p>{mainStory.a}</p>);
   const [bag, setBag] = useState<string[]>(['[🎒]']);
   const [health, setHealth] = useState<string[]>([
     '🤍',
@@ -28,11 +29,27 @@ export const Game: React.FC<GameProps> = ({}) => {
   const addStory = (s: string) => {
     const newStory = s && `=> ${s}`;
 
-    setStory([...story, newStory]);
+    setStory(
+      <>
+        {story}
+        {s === undefined ? (
+          <p>{newStory}</p>
+        ) : (
+          <p>
+            {newStory.split('\n').map((str, index) => (
+              <p key={index}>
+                {!str.includes('=>') && '=>'}
+                {str}
+              </p>
+            ))}
+          </p>
+        )}
+      </>
+    );
   };
 
   const restart = () => {
-    setStory([mainStory.a]);
+    setStory(<p>{mainStory.a}</p>);
 
     setChoice('');
     setIsDead(false);
