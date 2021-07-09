@@ -85,7 +85,6 @@ export const Game: React.FC<GameProps> = ({}) => {
         bag={bag}
         setBag={setBag}
       />
-      this is a test from dev branch
     </div>
   );
 };
