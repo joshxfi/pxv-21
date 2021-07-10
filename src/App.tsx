@@ -8,6 +8,11 @@ const App: React.FC = () => {
     <div
       css={css`
         text-align: center;
+        height: 100vh;
+
+        h1 {
+          margin-top: 20px;
+        }
       `}
     >
       <h1>PXV-21</h1>
@@ -32,6 +37,7 @@ const App: React.FC = () => {
             box-sizing: border-box;
             background: #000;
             color: #e0e0e0;
+            overflow: hidden;
           }
 
           ::-webkit-scrollbar-track {

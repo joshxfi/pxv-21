@@ -17,11 +17,10 @@ export const Story: React.FC<StoryProps> = ({ story }) => {
 
   return (
     <div
+      className="story"
       css={css`
         padding: 15px;
         text-align: left;
-        grid-auto-rows: 200px;
-        height: 300px;
         overflow-y: scroll;
         overflow-x: hidden;
       `}

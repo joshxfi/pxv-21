@@ -14,7 +14,7 @@ export const Game: React.FC<GameProps> = ({}) => {
   const [choice, setChoice] = useState<string>('');
   const [isDead, setIsDead] = useState<boolean>(false);
   const [story, setStory] = useState<JSX.Element>(<p>{mainStory.a}</p>);
-  const [bag, setBag] = useState<string[]>(['[🎒]']);
+  const [bag, setBag] = useState<string[]>(['🎒=>']);
   const [health, setHealth] = useState<string[]>([
     '🤍',
     '🤍',
@@ -53,11 +53,12 @@ export const Game: React.FC<GameProps> = ({}) => {
     setStory(<p>{mainStory.a}</p>);
 
     setChoice('');
+    setBag(['🎒=>']);
     setIsDead(false);
   };
 
   const death = () => {
-    const possibleDeath = ['a1', 'b1', 'd2b2'];
+    const possibleDeath = ['a1', 'b1', 'd2a', 'd2b2', 'd2b1a'];
     possibleDeath.forEach((death) => {
       choice === death && setIsDead(true);
     });
@@ -71,10 +72,19 @@ export const Game: React.FC<GameProps> = ({}) => {
         display: grid;
         width: 60%;
         margin: 0 auto;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: auto 60vh auto;
 
         div:not(.scrollDown) {
           border: 1px solid #333;
+        }
+
+        .story {
+          grid-column: 1/3;
+        }
+
+        .choices {
+          grid-column: 1/3;
         }
 
         @media screen and (max-width: 768px) {
@@ -82,15 +92,8 @@ export const Game: React.FC<GameProps> = ({}) => {
         }
       `}
     >
-      <div
-        css={css`
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-        `}
-      >
-        <Inventory bag={bag} />
-        <PlayerStatus health={health} />
-      </div>
+      <Inventory bag={bag} />
+      <PlayerStatus health={health} />
       <Story story={story} />
       <Choices
         story={story}

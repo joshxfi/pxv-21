@@ -37,22 +37,24 @@ export const Choices: React.FC<ChoicesProps> = ({
     } else if (choice === 'b2') {
       return mainStory.b2;
     } else if (choice === 'c1') {
-      addItem('🔪');
+      addItem('[🔪]');
       return mainStory.c1;
     } else if (choice === 'c2') {
       return mainStory.c2;
     } else if (choice === 'd2a') {
-      let enemyHP = 74;
-      const yourDmg = 26;
-      const currentEnemyHP = enemyHP - yourDmg;
-
-      return `[Enemy HP: ${enemyHP}/74]\n [Your DMG: ${yourDmg}]\n [Enemy HP Left: ${currentEnemyHP}/74]`;
+      addItem('[✏]');
+      return mainStory.d2a;
     } else if (choice === 'd2b') {
       return mainStory.d2b;
     } else if (choice === 'd2b1') {
-      return;
+      addItem('[🪒]');
+      return mainStory.d2b1;
     } else if (choice === 'd2b2') {
       return mainStory.d2b2;
+    } else if (choice === 'd2b1a') {
+      return mainStory.d2b1a;
+    } else if (choice === 'd2b1b') {
+      return mainStory.d2b1b;
     }
   };
 
@@ -68,6 +70,7 @@ export const Choices: React.FC<ChoicesProps> = ({
 
   return (
     <div
+      className="choices"
       css={css`
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -122,6 +125,13 @@ export const Choices: React.FC<ChoicesProps> = ({
         <>
           {choices('d2b1', 'find a weapon')}
           {choices('d2b2', 'stay silent')}
+        </>
+      )}
+
+      {choice === 'd2b1' && (
+        <>
+          {choices('d2b1a', 'open the door')}
+          {choices('d2b1b', 'stay silent')}
         </>
       )}
 

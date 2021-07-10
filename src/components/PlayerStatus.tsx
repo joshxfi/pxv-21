@@ -12,6 +12,7 @@ export const PlayerStatus: React.FC<PlayerStatusProps> = ({ health }) => {
       css={css`
         display: grid;
         grid-template-columns: 1fr;
+        font-size: 0.8em;
 
         div {
           padding: 10px;
