@@ -2,18 +2,28 @@
 /** @jsxFrag */
 import React, { useState, useEffect } from 'react';
 import { css, jsx } from '@emotion/react';
+import { motion } from 'framer-motion';
+import { mainStory } from '../script';
 import { Story } from './Story';
 import { Choices } from './Choices';
 import { Inventory } from './Inventory';
 import { PlayerStatus } from './PlayerStatus';
-import { mainStory } from '../script';
 
 interface GameProps {}
 
 export const Game: React.FC<GameProps> = ({}) => {
   const [choice, setChoice] = useState<string>('');
   const [isDead, setIsDead] = useState<boolean>(false);
-  const [story, setStory] = useState<JSX.Element>(<p>{mainStory.a}</p>);
+  const [story, setStory] = useState<JSX.Element>(
+    <motion.p
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
+      {mainStory.a}
+    </motion.p>
+  );
   const [bag, setBag] = useState<string[]>(['🎒=>']);
   const [health, setHealth] = useState<string[]>([
     '🤍',
@@ -35,15 +45,21 @@ export const Game: React.FC<GameProps> = ({}) => {
         {s === undefined ? (
           <p>{newStory}</p>
         ) : (
-          <p>
+          <>
             <hr />
             {newStory.split('\n').map((str, index) => (
-              <p key={index}>
+              <motion.p
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1 }}
+              >
                 {!str.includes('=>') && '=>'}
                 {str}
-              </p>
+              </motion.p>
             ))}
-          </p>
+          </>
         )}
       </>
     );
@@ -106,6 +122,7 @@ export const Game: React.FC<GameProps> = ({}) => {
         bag={bag}
         setBag={setBag}
       />
+      <p onClick={() => restart()}>reset</p>
     </div>
   );
 };
