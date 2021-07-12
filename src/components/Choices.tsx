@@ -41,6 +41,10 @@ export const Choices: React.FC<ChoicesProps> = ({
       return mainStory.c1;
     } else if (choice === 'c2') {
       return mainStory.c2;
+    } else if (choice === 'd1a') {
+      return mainStory.c2;
+    } else if (choice === 'd1a1') {
+      return mainStory.d1a1;
     } else if (choice === 'd2a') {
       addItem('[✏]');
       return mainStory.d2a;
@@ -55,11 +59,11 @@ export const Choices: React.FC<ChoicesProps> = ({
       return mainStory.d2b1a;
     } else if (choice === 'd2b1b') {
       return mainStory.d2b1b;
-    }
+    } else return;
   };
 
   useEffect(() => {
-    let narrate = whichChoice();
+    const narrate = whichChoice();
 
     addStory(narrate);
   }, [choice]);
@@ -110,7 +114,14 @@ export const Choices: React.FC<ChoicesProps> = ({
       {choice === 'c1' && (
         <>
           {choices('d1a', 'reinforce door')}
-          {choices('d1b', 'do nothing')}
+          {choices('d1b', 'gather your food')}
+        </>
+      )}
+
+      {choice === 'd1a' && (
+        <>
+          {choices('d1a1', 'attack [🔪]')}
+          {choices('d1a1', 'attack [🔪]')}
         </>
       )}
 
@@ -132,6 +143,20 @@ export const Choices: React.FC<ChoicesProps> = ({
         <>
           {choices('d2b1a', 'open the door')}
           {choices('d2b1b', 'stay silent')}
+        </>
+      )}
+
+      {choice === 'd2b1b' && (
+        <>
+          {choices('d2b1a', 'get his crowbar')}
+          {choices('d2b1b', 'leave the bathroom')}
+        </>
+      )}
+
+      {choice === 'd1a1' && (
+        <>
+          {choices('d2b1a', 'get his crowbar')}
+          {choices('d2b1b', 'leave the bathroom')}
         </>
       )}
 

@@ -36,29 +36,26 @@ export const Game: React.FC<GameProps> = ({}) => {
     '🤍',
   ]);
 
-  const addStory = (s: string) => {
-    const newStory = s && `=> ${s}`;
-
+  const addStory = (newStory: string) => {
     setStory(
       <>
-        {story}
-        {s === undefined ? (
-          <p>{newStory}</p>
+        {newStory === undefined ? (
+          <span>{story}</span>
         ) : (
           <>
-            <hr />
-            {newStory.split('\n').map((str, index) => (
-              <motion.p
-                key={index}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1 }}
-              >
-                {!str.includes('=>') && '=>'}
-                {str}
-              </motion.p>
-            ))}
+            {newStory.split('\n').map((str, index) => {
+              return (
+                <motion.p
+                  key={index}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1 }}
+                >
+                  {str.length > 1 && '=> '}
+                  {str}
+                </motion.p>
+              );
+            })}
           </>
         )}
       </>
@@ -74,7 +71,7 @@ export const Game: React.FC<GameProps> = ({}) => {
   };
 
   const death = () => {
-    const possibleDeath = ['a1', 'b1', 'd2a', 'd2b2', 'd2b1a'];
+    const possibleDeath = ['a1', 'b1', 'd2a', 'd2b1a', 'd2b2'];
     possibleDeath.forEach((death) => {
       choice === death && setIsDead(true);
     });
@@ -122,7 +119,7 @@ export const Game: React.FC<GameProps> = ({}) => {
         bag={bag}
         setBag={setBag}
       />
-      <p onClick={() => restart()}>reset</p>
+      {/* <p onClick={() => restart()}>reset</p> */}
     </div>
   );
 };

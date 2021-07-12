@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import React, { useEffect, useRef } from 'react';
 import { css, jsx } from '@emotion/react';
+import { AnimatePresence } from 'framer-motion';
 
 interface StoryProps {
   story: JSX.Element;
@@ -25,7 +26,7 @@ export const Story: React.FC<StoryProps> = ({ story }) => {
         overflow-x: hidden;
       `}
     >
-      {story}
+      <AnimatePresence>{story}</AnimatePresence>
       <div className="scrollDown" ref={msgEndRef}></div>
     </div>
   );
